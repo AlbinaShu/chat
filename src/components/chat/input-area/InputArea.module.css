@@ -1,0 +1,25 @@
+.inputArea {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--secondary-bg);
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--bg-color);
+  border-radius: 24px;
+  padding: 4px 8px;
+  border: 1px solid var(--border-color);
+}
+
+.textarea {
+  flex: 1;
+  background: none;
+  border: none;
+  resize: none;
+  padding: 8px 0;
+  font-size: 14px;
+  outline: none;
+}

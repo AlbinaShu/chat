@@ -1,0 +1,31 @@
+:root {
+  --bg-color: #ffffff;
+  --secondary-bg: #f1f3f4;
+  --sidebar-bg: #f1f3f4;
+  --text-color: #000000;
+  --text-secondary: #707579;
+  --border-color: #e9ecef;
+  --accent-color: #3390ec;
+  --accent-hover: #0056b3;
+  --user-message-bg: #effdde;
+  --assistant-message-bg: #ffffff;
+  --active-chat-bg: rgba(0, 0, 0, 0.06);
+  --hover-bg: rgba(0, 0, 0, 0.05);
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dark {
+  --bg-color: #1f1f1f;
+  --secondary-bg: #2b2b2b;
+  --sidebar-bg: #2b2b2b;
+  --text-color: #ffffff;
+  --text-secondary: #aaaaaa;
+  --border-color: #3a3a3a;
+  --accent-color: #3390ec;
+  --accent-hover: #9b6ad9;
+  --user-message-bg: #2b5f2b;
+  --assistant-message-bg: #2b2b2b;
+  --active-chat-bg: rgba(255, 255, 255, 0.08);
+  --hover-bg: rgba(255, 255, 255, 0.05);
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
