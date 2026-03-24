@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Button.module.css';
 
 interface IButtonProps {
+    isDisabled?: boolean;
     text?: string;
     icon?: React.ReactNode;
     iconPosition?: 'left' | 'right';
@@ -10,10 +11,13 @@ interface IButtonProps {
 }
 
 const Button: React.FC<IButtonProps> = ({
-    text, icon, iconPosition = 'left', className, onClick, 
+    isDisabled = false, text, icon, iconPosition = 'left', className, onClick,
 }) => {
     return (
-        <button className={`${styles.button} ${className}`} onClick={onClick}>
+        <button className={`${styles.button} ${className} ${isDisabled ? styles.disabled : ''}`} 
+                disabled={isDisabled}
+                onClick={onClick}
+        >
             {icon && iconPosition === 'left' && (
                 <span className={styles.icon}>{icon}</span>
             )}
