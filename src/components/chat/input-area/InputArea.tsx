@@ -1,19 +1,28 @@
 import React, { useState } from 'react';
-import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
+import { PaperAirplaneIcon, StopIcon } from '@heroicons/react/24/outline';
 import styles from './InputArea.module.css';
 import Button from '../../ui/button/Button';
 
 interface IInputAreaProps {
-    isDisabled: boolean;
+    isLoading: boolean;
     onSend: (value: string) => void,
 }
 
-const InputArea: React.FC<IInputAreaProps> = ({ isDisabled, onSend }) => {
+const InputArea: React.FC<IInputAreaProps> = ({ isLoading, onSend }) => {
     const [value, setValue] = useState('');
 
     const handleSubmit = () => {
         onSend(value);
         setValue('');
+    };
+
+    const handleStop = () => { };
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault();
+            handleSubmit();
+        }
     };
 
     return (
@@ -25,13 +34,17 @@ const InputArea: React.FC<IInputAreaProps> = ({ isDisabled, onSend }) => {
                     value={value}
                     className={styles.textarea}
                     onChange={(e) => setValue(e.target.value)}
-                    disabled={isDisabled}
+                    onKeyDown={handleKeyDown}
+                    disabled={isLoading}
                 />
 
-                <Button icon={<PaperAirplaneIcon />} 
-                        isDisabled={value.trim().length === 0 || isDisabled} 
-                        onClick={handleSubmit} 
-                />
+                {isLoading
+                    ? <Button icon={<StopIcon />}
+                        onClick={handleStop} />
+                    : <Button icon={<PaperAirplaneIcon />}
+                        isDisabled={value.trim().length === 0}
+                        onClick={handleSubmit} />
+                }
             </div>
         </div>
     );

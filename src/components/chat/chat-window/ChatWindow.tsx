@@ -57,7 +57,7 @@ const ChatWindow: React.FC<IChatWindowProps> = ({ chatId }) => {
 
             {isLoading && <TypingIndicator isVisible={isLoading} />}
 
-            <InputArea isDisabled={isLoading} onSend={handleSend} />
+            <InputArea isLoading={isLoading} onSend={handleSend} />
         </div>
     );
 };

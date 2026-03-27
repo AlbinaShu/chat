@@ -29,6 +29,7 @@
   padding: 8px 12px;
   border-radius: 14px;
   word-wrap: break-word;
+  word-break: break-all;
   box-shadow: var(--shadow);
 }
 
@@ -42,6 +43,26 @@
   background-color: var(--assistant-message-bg);
   color: var(--text-color);
   border-bottom-left-radius: 4px;
+}
+
+.contentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contentButtons {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.copyButton {
+  visibility: hidden;
+}
+
+.message.assistantMessage:hover .copyButton {
+  visibility: visible;
 }
 
 .sender {
