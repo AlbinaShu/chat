@@ -7,7 +7,7 @@ interface IButtonProps {
     icon?: React.ReactNode;
     iconPosition?: 'left' | 'right';
     className?: string;
-    onClick: () => void;
+    onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button: React.FC<IButtonProps> = ({

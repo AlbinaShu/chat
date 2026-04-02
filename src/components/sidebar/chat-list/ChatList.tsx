@@ -5,7 +5,7 @@ import styles from './ChatList.module.css';
 
 interface IChatListProps {
     chats: IChat[];
-    activeChatId: string;
+    activeChatId: string | null;
 }
 
 const ChatList: React.FC<IChatListProps> = ({

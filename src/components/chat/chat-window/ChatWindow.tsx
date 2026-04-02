@@ -1,43 +1,51 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import styles from './ChatWindow.module.css';
-import { CHATS_MOCK } from '../../../mocks';
 import MessageList from '../message-list/MessageList';
 import InputArea from '../input-area/InputArea';
 import type { IMessage } from '../../../interfaces';
 import TypingIndicator from '../typing-indicator/TypingIndicator';
+import { useChatContext } from '../../../store';
 
-interface IChatWindowProps {
-    chatId: string;
-}
+const ChatWindow: React.FC = () => {
+    const { id } = useParams();
+    const { state, dispatch } = useChatContext();
 
-const ChatWindow: React.FC<IChatWindowProps> = ({ chatId }) => {
-    const chat = CHATS_MOCK.find(item => item.id === chatId);
-    const [messages, setMessages] = useState<IMessage[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const chat = state.chats.find(chat => chat.id === id);
+    const messages = state.messages[id as string];
+
+    useEffect(() => {
+        if (id) {
+            dispatch({
+                type: 'SET_ACTIVE_CHAT_ID',
+                payload: id,
+            });
+        }
+    }, [id]);
 
     const handleSend = (content: string) => {
         const newMessage: IMessage = {
-            chatId,
+            chatId: state.activeChatId as string,
             content,
             id: `${Date.now()}`,
             role: 'user',
             createdAt: new Date().toISOString()
         };
 
-        setMessages(prev => [...prev, newMessage]);
-        setIsLoading(true);
+        dispatch({ type: 'CREATE_MESSAGE', payload: newMessage });
+        dispatch({ type: 'SET_IS_LOADING', payload: true });
 
         setTimeout(() => {
             const assistantMessage: IMessage = {
-                chatId,
+                chatId: state.activeChatId as string,
                 id: `${Date.now()}`,
                 content: 'Сообщение ассистента',
                 role: 'assistant',
                 createdAt: new Date().toISOString()
             };
 
-            setMessages((prev) => [...prev, assistantMessage]);
-            setIsLoading(false);
+            dispatch({ type: 'CREATE_MESSAGE', payload: assistantMessage });
+            dispatch({ type: 'SET_IS_LOADING', payload: false });
         }, 2000);
     };
 
@@ -55,9 +63,9 @@ const ChatWindow: React.FC<IChatWindowProps> = ({ chatId }) => {
 
             <MessageList messages={messages} />
 
-            {isLoading && <TypingIndicator isVisible={isLoading} />}
+            {state.isLoading && <TypingIndicator isVisible={state.isLoading} />}
 
-            <InputArea isLoading={isLoading} onSend={handleSend} />
+            <InputArea isLoading={state.isLoading} onSend={handleSend} />
         </div>
     );
 };
