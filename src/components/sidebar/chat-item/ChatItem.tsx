@@ -12,7 +12,7 @@ interface IChatItemProps {
     isActive: boolean;
 }
 
-const ChatItem: React.FC<IChatItemProps> = ({ chat, isActive }) => {
+const ChatItem: React.FC<IChatItemProps> = React.memo(({ chat, isActive }) => {
     const { dispatch } = useChatContext();
     const navigate = useNavigate();
 
@@ -104,6 +104,6 @@ const ChatItem: React.FC<IChatItemProps> = ({ chat, isActive }) => {
             </div>
         </div>
     );
-};
+});
 
 export default ChatItem;
