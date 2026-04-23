@@ -7,7 +7,7 @@ interface IMessageListProps {
     messages: IMessage[];
 }
 
-const MessagesList: React.FC<IMessageListProps> = ({ messages }) => {
+const MessagesList: React.FC<IMessageListProps> = React.memo(({ messages }) => {
     const bottomRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -23,6 +23,6 @@ const MessagesList: React.FC<IMessageListProps> = ({ messages }) => {
             <div ref={bottomRef}></div>
         </div>
     )
-};
+});
 
 export default MessagesList;

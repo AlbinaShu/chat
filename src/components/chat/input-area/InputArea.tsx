@@ -6,9 +6,10 @@ import Button from '../../ui/button/Button';
 interface IInputAreaProps {
     isLoading: boolean;
     onSend: (value: string) => void,
+    onStop: () => void,
 }
 
-const InputArea: React.FC<IInputAreaProps> = ({ isLoading, onSend }) => {
+const InputArea: React.FC<IInputAreaProps> = ({ isLoading, onSend, onStop }) => {
     const [value, setValue] = useState('');
 
     const handleSubmit = () => {
@@ -16,7 +17,9 @@ const InputArea: React.FC<IInputAreaProps> = ({ isLoading, onSend }) => {
         setValue('');
     };
 
-    const handleStop = () => { };
+    const handleStop = () => {
+        onStop();
+    };
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (event.key === 'Enter' && !event.shiftKey) {

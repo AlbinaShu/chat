@@ -8,7 +8,7 @@ interface IChatListProps {
     activeChatId: string | null;
 }
 
-const ChatList: React.FC<IChatListProps> = ({
+const ChatList: React.FC<IChatListProps> = React.memo(({
     chats,
     activeChatId,
 }) => {
@@ -23,6 +23,6 @@ const ChatList: React.FC<IChatListProps> = ({
             ))}
         </div>
     );
-};
+});
 
 export default ChatList;

@@ -3,7 +3,9 @@
 ## Демо
 `https://AlbinaShu.github.io/chat/`
 
-...раздел будет дополнен позже
+[▶️ Смотреть демо](https://drive.google.com/file/d/1uMXWx-ibov4PwyKGnHv_AZvJpxWAloFn/view?usp=drive_link)
+
+Задеплоенная версия `https://AlbinaShu.github.io/chat/` не содержит интеграции с GigaChat. Проверить интеграцию с GigaChat можно только с помощью локального запуска (так сделано из-за CORS ошибки, пришлось добавлять в vite настройки proxy-сервера)
 
 ## Стек
 - React 19.2.0
@@ -14,10 +16,14 @@
 ## Запуск локально
 1. git clone https://github.com/AlbinaShu/chat.git
 2. npm i
-3. npm run dev
+3. установить значения переменных окружения `VITE_GIGA_CHAT_AUTH_KEY` и `VITE_GIGA_CHAT_SCOPE` в файле `.env`
+4. npm run dev
 
 ## Переменные окружения
-...раздел будет дополнен позже
+| Переменная              | Описание          |
+|-------------------------|-------------------|
+| VITE_GIGA_CHAT_AUTH_KEY | Ключ авторизации  |
+| VITE_GIGA_CHAT_SCOPE    | Версия API        |
 
 ## Клонирование репозитория
 `git clone https://github.com/AlbinaShu/chat.git`

@@ -9,7 +9,7 @@ interface IMessageProps {
     message: IMessage;
 }
 
-const Message: React.FC<IMessageProps> = ({ message }) => {
+const Message: React.FC<IMessageProps> = React.memo(({ message }) => {
     const [isCopied, setIsCopied] = useState(false);
     const isAssistant = message.role === 'assistant';
 
@@ -54,6 +54,6 @@ const Message: React.FC<IMessageProps> = ({ message }) => {
     )
 
     return isAssistant ? assistantMessage : userMessage;
-};
+});
 
 export default Message;
